@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
     <name>
-        <lang name="default">@User</lang>
-        <lang name="russian">@User</lang>
+        <lang name="default">TopicUp</lang>
+        <lang name="russian">TopicUp</lang>
     </name>
     <author>
         <lang name="default">1099511627776</lang>
@@ -16,7 +16,7 @@
         </plugins>
     </requires>
     <description>
-        <lang name="default">converts @username to link if user exists in LS</lang>
-        <lang name="russian">конвертирует @username в ссылку если юзер зарегистрирован в LS</lang>
+        <lang name="default">Allows to bring topic to upper position in topic list by changing its publish date</lang>
+        <lang name="russian">Позволяет поднять топик в списке топиков путем изменения даты публикации</lang>
     </description>
 </plugin>

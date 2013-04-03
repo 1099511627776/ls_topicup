@@ -16,7 +16,12 @@ class PluginTopicup_HookTopicup extends Hook {
 
     public function RegisterHook() {
         $this->AddHook('topic_edit_after', 'doTopicUp',__CLASS__);
+
         $this->AddHook('template_form_add_topic_topic_end', 'injectTopicUp',__CLASS__);
+        $this->AddHook('template_form_add_topic_photoset_end', 'injectTopicUp',__CLASS__);
+        $this->AddHook('template_form_add_topic_question_end', 'injectTopicUp',__CLASS__);
+        $this->AddHook('template_form_add_topic_link_end', 'injectTopicUp',__CLASS__);
+
         $this->AddHook('template_topic_content_end', 'injectTopicUpReason',__CLASS__);
         $this->AddHook('template_footer_end', 'displayCopyright',__CLASS__);
 
