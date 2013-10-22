@@ -26,34 +26,38 @@ class PluginTopicup_HookTopicup extends Hook {
         $this->AddHook('template_footer_end', 'displayCopyright',__CLASS__);
 
     }
-	
-	public function injectTopicUp(){
-		return $this->Viewer_Fetch(Plugin::GetTemplatePath('topicup').'inject.TopicUp.tpl');
-	}
-	public function injectTopicUpReason($params){
-		$oTopic = $params['oTopic'];
-		$bTopicList = $params['bTopicList'];	
-		if(!$bTopicList){			
-			return $this->Viewer_Fetch(Plugin::GetTemplatePath('topicup').'inject.TopicUpReason.tpl');
-		}
-		return;
-	}
+    
+    public function injectTopicUp(){
+        return $this->Viewer_Fetch(Plugin::GetTemplatePath('topicup').'inject.TopicUp.tpl');
+    }
+    public function injectTopicUpReason($params){
+        $oTopic = $params['oTopic'];
+        $bTopicList = $params['bTopicList'];
+        if(!$bTopicList){
+            return $this->Viewer_Fetch(Plugin::GetTemplatePath('topicup').'inject.TopicUpReason.tpl');
+        }
+        return;
+    }
 
-	public function doTopicUp($params){
-		$oTopic = $params['oTopic'];
-		if($doTopicUp = getRequest('topic_topicUp')){
-			$sTopicUpReason = getRequestStr('topic_topicUp_reason');
-			$oTopic->setTopicUpReason($sTopicUpReason);
-			$oTopic->setDateAdd(date('Y-m-d H:i:s'));
-			$oTopic->setDateEdit(date('Y-m-d H:i:s'));
-			$this->Topic_UpdateTopic($oTopic);
-			$oTopic = $this->Topic_GetTopicById($oTopic->getId());
-		}
-	}
+    public function doTopicUp($params){
+        $oTopic = $params['oTopic'];
+        if($doTopicUp = getRequest('topic_topicUp')){
+            $sTopicUpReason = getRequest('topic_topicUp_reason');
+            $oTopic->setTopicUpReason($sTopicUpReason);
+            $oTopic->setDateAdd(date('Y-m-d H:i:s'));
+            $oTopic->setDateEdit(date('Y-m-d H:i:s'));
+            $this->Topic_UpdateTopic($oTopic);
+            $oTopic = $this->Topic_GetTopicById($oTopic->getId());
+        } elseif($doChangeDate = getRequest('topic_dateChange')){
+            $oTopic->setDateAdd(getRequest('topic_date'));
+            $oTopic->setDateEdit(getRequest('topic_date'));
+            $this->Topic_UpdateTopic($oTopic);
+        }
+    }
 
-	public function displayCopyright(){
-		return '<a href="http://crashbox.ws/">Дыхание Мейнстрима</a>';
-	}
+    public function displayCopyright(){
+        return '<a href="http://goloskarpat.info/" target="_blank">Новости закарпатья</a>';
+    }
 
 }
 ?>

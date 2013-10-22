@@ -24,8 +24,8 @@ class PluginTopicup extends Plugin {
 
     protected $aInherits=array(
         'entity' => array(
-			'ModuleTopic_EntityTopic' => '_ModuleTopic_EntityTopic',
-		),
+            'ModuleTopic_EntityTopic' => '_ModuleTopic_EntityTopic',
+        ),
     );
 
     // Активация плагина
@@ -35,10 +35,13 @@ class PluginTopicup extends Plugin {
 
     // Деактивация плагина
     public function Deactivate(){       
-    	return true;
+        return true;
     }
     // Инициализация плагина
     public function Init() {
+        $this->Viewer_AppendStyle(Plugin::GetTemplatePath(__CLASS__)."css/jquery-ui-timepicker-addon.css");
+        $this->Viewer_AppendScript(Plugin::GetTemplatePath(__CLASS__)."js/jquery-ui-timepicker-addon.js");
+        $this->Viewer_AppendScript(Plugin::GetTemplatePath(__CLASS__)."js/jquery-ui-timepicker-ru.js");
     }
 }
 ?>
